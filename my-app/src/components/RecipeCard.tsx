@@ -8,7 +8,6 @@ type RecipeCardProps = {
     need: string[];
     tag: string;
     tagColor?: string;
-    logo?: string[]
 }
 
 

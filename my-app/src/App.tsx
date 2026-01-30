@@ -3,8 +3,23 @@
 
 import './App.css';
 import RecipeCard from './components/RecipeCard';
+import { useState } from 'react';
+
+type Recipe = {
+  title: string;
+  image: string;
+  have: string[];
+  need: string[];
+  tag: string;
+  tagColor?: string;
+}
 
 function App() {
+
+   const [budget, setBudget] = useState("Under $5");
+  const [difficulty, setDifficulty] = useState("Easy");
+  const [ingredients, setIngredients] = useState(""); ``
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
 
   return (
     <>
@@ -21,20 +36,6 @@ function App() {
     have={["Buns", "Cheese"]} 
     need={["Beef Patty", "Lettuce", "Tomato"]} 
     tag='Fast Food' />
-
-  <RecipeCard 
-    title='pancakes' 
-    image='' 
-    have={["Flour", "Eggs"]} 
-    need={["Milk", "Butter"]} 
-    tag='Breakfast' />
-
-  <RecipeCard 
-    title='salad' 
-    image='' 
-    have={["Lettuce", "Tomato"]} 
-    need={["Cucumber", "Olive Oil"]} 
-    tag='Healthy' />
     </>
   )
 }
