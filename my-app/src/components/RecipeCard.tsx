@@ -10,8 +10,6 @@ type RecipeCardProps = {
     tagColor?: string;
 }
 
-
-
 const RecipeCard = ({title, image, have, need, tag, tagColor}: RecipeCardProps) => {
 
   return (
