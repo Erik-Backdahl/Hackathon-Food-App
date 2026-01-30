@@ -1,4 +1,3 @@
-import RecipeCard from "./components/RecipeCard";
 import { NavLink, Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import { InventoryPage } from "./views/InventoryPage";
@@ -8,16 +7,21 @@ export default function App() {
   return (
     <div>
       <header className="app-header">
-        <h1>Studentsmarta Recept</h1>
-        <p>kopplade till det du har hemma och butikers reor</p>
-        <nav className="app-nav">
-          <NavLink to="/recipes" className="nav-link">
-            Recipes
-          </NavLink>
-          <NavLink to="/inventory" className="nav-link">
-            Inventory
-          </NavLink>
-        </nav>
+        <div className="header-content">
+          <h1>Studentsmarta Recept</h1>
+          <p className="header-subtitle">
+            kopplade till det du har hemma och butikers reor
+          </p>
+
+          <nav className="app-nav">
+            <NavLink to="/inventory" className="nav-link nav-secondary">
+              Ditt inventory
+            </NavLink>
+            <NavLink to="/recipes" className="nav-link nav-primary">
+              Sparade recept
+            </NavLink>
+          </nav>
+        </div>
       </header>
 
       <Routes>

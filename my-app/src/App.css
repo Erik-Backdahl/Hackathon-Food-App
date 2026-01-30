@@ -15,13 +15,19 @@ body,
 }
 
 .app-header {
+  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 2rem 1.25rem;
   border-bottom: 2px solid #f0f0f0;
-  background: white;
+  background: #F5D863;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.75rem;
 }
 
 .app-header h1 {
@@ -30,33 +36,69 @@ body,
   font-weight: 700;
 }
 
+.header-subtitle {
+  margin: 0;
+  color: #555;
+  font-weight: 500;
+}
+
 .app-nav {
   display: flex;
-  gap: 1.5rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
 }
 
 .nav-link {
   text-decoration: none;
-  color: #666;
-  font-weight: 600;
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
+  font-weight: 700;
+  padding: 0.6rem 1.1rem;
+  border-radius: 6px;
   transition: all 0.2s ease;
   cursor: pointer;
+  color: white;
 }
 
-.nav-link:hover {
-  color: #007bff;
-  background: #f0f7ff;
+.nav-primary {
+  background: #76C0A3;
+}
+
+.nav-primary:hover {
+  background: #64a189;
+}
+
+.nav-secondary {
+  background: #EFA19B;
+}
+
+.nav-secondary:hover {
+  background: #a96f6b;
 }
 
 .nav-link.active {
-  color: #007bff;
-  background: #f0f7ff;
-  border-bottom: 2px solid #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08) inset;
+}
+
+.hamburger {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  width: 40px;
+  height: 36px;
+  background: #F5D863;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0;
+}
+
+.hamburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #111827;
+  border-radius: 999px;
 }
 
 button,

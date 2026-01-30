@@ -7,6 +7,7 @@ import {
   saveInventoryToStorage,
   type Recipe,
 } from "../components/inventory";
+import { mockRecipes } from "../data/mockRecipies";
 import "./InventoryPage.css";
 
 export function InventoryPage() {
@@ -17,9 +18,10 @@ export function InventoryPage() {
   );
 
   useEffect(() => {
-    fetch("/api/recipes")
-      .then((res) => res.json())
-      .then(setRecipes);
+    setRecipes(mockRecipes);
+    // fetch("/api/recipes")
+    //   .then((res) => res.json())
+    //   .then(setRecipes);
   }, []);
 
   useEffect(() => {

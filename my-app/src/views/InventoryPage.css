@@ -22,25 +22,25 @@
 }
 
 .btn-primary {
-  background: #007bff;
+  background: #00a967;
   color: white;
   text-decoration: none;
   padding: 0.6rem 1.2rem;
-  border-radius: 6px;
+  border-radius: 6px #00a967;
   display: inline-block;
   transition: all 0.2s ease;
 }
 
 .btn-primary:hover {
-  background: #0056b3;
+  background: #00a967;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 4px 12px #00a967;
 }
 
 .btn-secondary {
   background: #f0f0f0;
   color: #333;
-  border: 1px solid #ddd;
+  border: 1px solid #00a967;
   padding: 0.6rem 1.2rem;
   border-radius: 6px;
   transition: all 0.2s ease;
@@ -48,7 +48,7 @@
 
 .btn-secondary:hover {
   background: #e8e8e8;
-  border-color: #999;
+  border-color: #00a967;
 }
 
 .inventory-search {
@@ -58,7 +58,7 @@
 .inventory-search input {
   width: 100%;
   padding: 0.85rem;
-  border: 2px solid #ddd;
+  border: 2px solid #00a967;
   border-radius: 8px;
   font-size: 1rem;
   transition: all 0.2s ease;
@@ -66,8 +66,8 @@
 
 .inventory-search input:focus {
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+  border-color: #00a967;
+  box-shadow: 0 0 0 4px #00a967;
 }
 
 .inventory-list {
@@ -78,6 +78,7 @@
   background: white;
   padding: 1.5rem;
   border-radius: 8px;
+  border-color: #00a967;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
@@ -87,6 +88,7 @@
   gap: 0.75rem;
   padding: 0.75rem;
   border-radius: 6px;
+  border-color: #00a967;
   cursor: pointer;
   transition: all 0.2s ease;
   user-select: none;
@@ -107,8 +109,8 @@
 .inventory-summary {
   padding: 1.5rem;
   background: #f0f7ff;
-  border-left: 4px solid #007bff;
+  border-left: 4px solid #00a967;
   border-radius: 6px;
   font-weight: 600;
-  color: #0056b3;
+  color: #00a967;
 }
