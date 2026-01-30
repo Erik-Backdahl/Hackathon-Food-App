@@ -12,5 +12,7 @@ public class Recipe
     public bool Cheap { get; set; } = false;
     public bool Sustainable { get; set; } = false;
     public bool LowFodMap { get; set; } = false;
+    public string Instructions { get; set; } = null!;
+    public string Summary { get; set; } = null!;
     public ICollection<RecipeIngredient> RecipeIngredients { get; set; } = new List<RecipeIngredient>();
 }
