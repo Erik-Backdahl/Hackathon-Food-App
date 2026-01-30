@@ -13,6 +13,7 @@ type RecipeCardProps = {
 
 
 const RecipeCard = ({title, image, have, need, tag, tagColor}: RecipeCardProps) => {
+
   return (
 
     <>
