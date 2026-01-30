@@ -14,11 +14,11 @@ export default function App() {
           </p>
 
           <nav className="app-nav">
-            <NavLink to="/inventory" className="nav-link nav-secondary">
-              Ditt inventory
-            </NavLink>
             <NavLink to="/recipes" className="nav-link nav-primary">
-              Sparade recept
+              Recept
+            </NavLink>
+            <NavLink to="/inventory" className="nav-link nav-secondary">
+              Inventory
             </NavLink>
           </nav>
         </div>
