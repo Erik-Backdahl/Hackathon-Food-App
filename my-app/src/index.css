@@ -104,3 +104,13 @@
 .show-button:active {
   transform: scale(0.97);
 }
+
+.cooking-time{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.7rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
