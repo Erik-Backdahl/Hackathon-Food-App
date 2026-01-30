@@ -1,24 +1,32 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { mockRecipes } from "../components/mockdata";
 import {
   getAllIngredients,
   loadInventoryFromStorage,
   normalizeIngredientName,
   saveInventoryToStorage,
+  type Recipe,
 } from "../components/inventory";
-import "./InventoryPage.css"
+import "./InventoryPage.css";
 
 export function InventoryPage() {
-  const allIngredients = useMemo(() => getAllIngredients(mockRecipes), []);
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [search, setSearch] = useState("");
   const [selectedIngredients, setSelectedIngredients] = useState<Set<string>>(
     () => loadInventoryFromStorage(),
   );
 
   useEffect(() => {
+    fetch("/api/recipes")
+      .then((res) => res.json())
+      .then(setRecipes);
+  }, []);
+
+  useEffect(() => {
     saveInventoryToStorage(selectedIngredients);
   }, [selectedIngredients]);
+
+  const allIngredients = useMemo(() => getAllIngredients(recipes), [recipes]);
 
   const filteredIngredients = allIngredients.filter((name) =>
     name.toLowerCase().includes(search.toLowerCase()),

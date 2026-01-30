@@ -1,26 +1,34 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { mockRecipes } from "../components/mockdata";
 import {
   type FilterOptions,
   filterRecipes,
   loadInventoryFromStorage,
+  type Recipe,
 } from "../components/inventory";
 import "./RecipesPage.css";
 
 export function RecipesPage() {
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [filters, setFilters] = useState<FilterOptions>({
     dietary: "all",
     prepTime: "any",
     recipeType: "any",
   });
+
   const [isOpen, setIsOpen] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/recipes")
+      .then((res) => res.json())
+      .then(setRecipes);
+  }, []);
 
   const selectedIngredients = useMemo(() => loadInventoryFromStorage(), []);
 
   const matchingRecipes = useMemo(
-    () => filterRecipes(mockRecipes, selectedIngredients, filters),
-    [filters, selectedIngredients],
+    () => filterRecipes(recipes, selectedIngredients, filters),
+    [recipes, filters, selectedIngredients],
   );
 
   const setSingleCheckbox = <
