@@ -6,15 +6,15 @@ public static class EndpointEntry
     {
         var group = app.MapGroup("/testing");
 
-        group.MapGet("/add-recipe", async (HttpContext httpContext, FoodAppDbContext db) =>
+        group.MapPost("/add-recipes", async (FoodAppDbContext dbContext, RecipesRoot root) =>
         {
-            
+            foreach (var recipeJson in root.recipes)
+            {
+                var recipe = await ConvertJson.ConvertToRecipeAsync(recipeJson);
+                await ConvertJson.SaveToDataBase(recipe, dbContext);
+            }
+
             return Results.Ok();
-        });
-        group.MapGet("/", async (FoodAppDbContext db) =>
-        {
-            Console.WriteLine("HÄR2222");
-            
         });
         return app;
     }

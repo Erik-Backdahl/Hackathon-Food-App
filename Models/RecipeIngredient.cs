@@ -7,5 +7,5 @@ public class RecipeIngredient
     public Ingredient Ingredient { get; set; } = null!;
 
     public decimal Amount { get; set; }
-    public string Unit { get; set; } = null!;
+    public string? Unit { get; set; } = null;
 }
