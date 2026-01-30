@@ -10,28 +10,28 @@ function App() {
     <>
     <RecipeCard 
     title='pizza' 
-    image='exampleFood.png' 
-    have={["Eggs", "Milk"]} 
-    need={["Flour", "Sugar"]}
+    image='' 
+    have={["Pepperoni", "Cheese"]} 
+    need={["Flour", "Yeast"]}
     tag='Cheap And Quick!' />
     
     <RecipeCard 
     title='burger' 
-    image='burger.png' 
+    image='' 
     have={["Buns", "Cheese"]} 
     need={["Beef Patty", "Lettuce", "Tomato"]} 
     tag='Fast Food' />
 
   <RecipeCard 
     title='pancakes' 
-    image='pancakes.png' 
+    image='' 
     have={["Flour", "Eggs"]} 
     need={["Milk", "Butter"]} 
     tag='Breakfast' />
 
   <RecipeCard 
     title='salad' 
-    image='salad.png' 
+    image='' 
     have={["Lettuce", "Tomato"]} 
     need={["Cucumber", "Olive Oil"]} 
     tag='Healthy' />

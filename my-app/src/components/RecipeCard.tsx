@@ -8,6 +8,7 @@ type RecipeCardProps = {
     need: string[];
     tag: string;
     tagColor?: string;
+    logo?: string[]
 }
 
 
@@ -18,18 +19,20 @@ const RecipeCard = ({title, image, have, need, tag, tagColor}: RecipeCardProps) 
     <>
     <div className="recipe-card-container">
         <div className="recipe-card">
-        <h2>{title}</h2>
+        <h1>{title}</h1>
         
         <img src={image} alt="food picture" />
         
         <div className="tag-container">
             <div className="have-need-container">
-                <p><span className="have">You Have:</span>  {have.join(", ")}</p>
+                <p><span className="have">You Have:</span> {have.join(",  ")}</p>
                 <p><span className="need">You Need:</span> {need.join(", ")}</p>
             </div>
             
-            <span className="tag" style={{background: tagColor}}>{tag}</span> 
+            <span className="tag" style={{background: tagColor}}>{tag}</span>
         </div>
+
+        <button className="show-button">Show Instructions</button>
     </div>
     </div>
     </>

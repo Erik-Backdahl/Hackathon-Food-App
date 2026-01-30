@@ -7,6 +7,8 @@
 
 body{
   background-color: rgb(248, 234, 234);
+  font-family: 'Inter', system-ui, sans-serif;
+
 }
 
 .recipe-card-container{
@@ -17,14 +19,14 @@ body{
 }
 
 .recipe-card {
-  width: 40%;
+  min-width: 40%;
   background: white;
   border-radius: 12px;
-  padding: 16px;
+  padding: 1rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 2rem;
 }
 
 .recipe-card h2 {
@@ -34,15 +36,15 @@ body{
 
 .recipe-card img {
   width: 100%;
-  height: 160px;
+  height: 12rem;
   object-fit: cover;
-  border-radius: 8px;
 }
 
 .recipe-card p {
   margin: 0;
   font-size: 0.9rem;
   color: #444;
+  font-weight: 600;
 }
 
 .have{
@@ -56,7 +58,6 @@ body{
 }
 
 .tag {
-  align-self: flex-start;
   padding: 4px 10px;
   border-radius: 999px;
   font-size: 0.75rem;
@@ -69,4 +70,31 @@ body{
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.tag-and-button{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.show-button {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f7f7f7;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.show-button:hover {
+  background: #eee;
+}
+
+.show-button:active {
+  transform: scale(0.98);
 }
