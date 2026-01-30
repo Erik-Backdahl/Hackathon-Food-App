@@ -1,11 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import RecipeCard from "../components/RecipeCard";
 import {
   type FilterOptions,
   filterRecipes,
   loadInventoryFromStorage,
+  normalizeIngredientName,
   type Recipe,
 } from "../components/inventory";
+import { mockRecipes } from "../data/mockRecipies";
 import "./RecipesPage.css";
 
 export function RecipesPage() {
@@ -32,9 +35,10 @@ export function RecipesPage() {
   };
 
   useEffect(() => {
-    fetch("/api/recipes")
-      .then((res) => res.json())
-      .then(setRecipes);
+    setRecipes(mockRecipes)
+    // fetch("/api/recipes")
+    //   .then((res) => res.json())
+    //   .then(setRecipes);
   }, []);
 
   const selectedIngredients = useMemo(() => loadInventoryFromStorage(), []);
@@ -43,6 +47,30 @@ export function RecipesPage() {
     () => filterRecipes(recipes, selectedIngredients, filters),
     [recipes, filters, selectedIngredients],
   );
+
+  const splitHaveNeed = (recipe: Recipe) => {
+    const have: string[] = [];
+    const need: string[] = [];
+
+    recipe.extendedIngredients.forEach((ing) => {
+      const normalized = normalizeIngredientName(ing.name);
+      if (selectedIngredients.has(normalized)) {
+        have.push(ing.name);
+      } else {
+        need.push(ing.name);
+      }
+    });
+
+    return { have, need };
+  }
+
+  const getTag = (recipe: Recipe) => {
+    if (recipe.cheap) return { tag: "Budget", tagColor: "#16a34a" };
+    if (recipe.healthy) return { tag: "Healthy", tagColor: "#0ea5e9" };
+    if (recipe.sustainable) return { tag: "Sustainable", tagColor: "#10b981" };
+    if (recipe.vegan) return { tag: "Vegan", tagColor: "#22c55e" };
+    return { tag: `${recipe.readyInMinutes} min`, tagColor: "#111827" };
+  };
 
   const setSingleCheckbox = <
     T extends "all" | "vegetarian" | "vegan" | "gluten-free" | "dairy-free",
@@ -233,26 +261,22 @@ export function RecipesPage() {
       </div>
 
       <div className="recipes-grid">
-        {matchingRecipes.map((recipe) => (
-          <div key={recipe.id} className="recipe-card">
-            <img src={recipe.image} alt={recipe.title} />
-            <div className="recipe-card-body">
-              <h3>{recipe.title}</h3>
-              <p>
-                ⏱️ {recipe.readyInMinutes} min | 👥 {recipe.servings} servings
-              </p>
-              <div className="recipe-tags">
-                {recipe.vegetarian && <span>🥬 Vegetarian</span>}
-                {recipe.vegan && <span>🌱 Vegan</span>}
-                {recipe.glutenFree && <span>🌾 Gluten Free</span>}
-                {recipe.dairyFree && <span>🥛 Dairy Free</span>}
-                {recipe.healthy && <span>💚 Healthy</span>}
-                {recipe.sustainable && <span>♻️ Sustainable</span>}
-                {recipe.popular && <span>⭐ Popular</span>}
-              </div>
-            </div>
-          </div>
-        ))}
+        {matchingRecipes.map((recipe) => {
+          const { have, need } = splitHaveNeed(recipe);
+          const { tag, tagColor } = getTag(recipe);
+
+          return (
+            <RecipeCard
+              key={recipe.id}
+              title={recipe.title}
+              image={recipe.image}
+              have={have}
+              need={need}
+              tag={tag}
+              tagColor={tagColor}
+            />
+          );
+        })}
       </div>
     </div>
   );
