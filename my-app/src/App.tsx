@@ -1,3 +1,4 @@
+import RecipeCard from './components/RecipeCard';
 import { NavLink, Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import { InventoryPage } from "./views/InventoryPage";
@@ -23,8 +24,7 @@ function App() {
         <Route path="/recipes" element={<RecipesPage />} />
         <Route path="/inventory" element={<InventoryPage />} />
       </Routes>
+      <RecipeCard title='pizza' image='' have={["Pepperoni", "Cheese"]} need={["Flour", "Yeast"]}tag='Cheap And Quick!'/>
     </div>
   );
 }
-
-export default App;
