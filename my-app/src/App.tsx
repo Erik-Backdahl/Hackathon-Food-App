@@ -16,7 +16,7 @@ type Recipe = {
 
 function App() {
 
-   const [budget, setBudget] = useState("Under $5");
+  const [budget, setBudget] = useState("Under $5");
   const [difficulty, setDifficulty] = useState("Easy");
   const [ingredients, setIngredients] = useState(""); ``
   const [recipes, setRecipes] = useState<Recipe[]>([]);
