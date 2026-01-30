@@ -1,4 +1,4 @@
-class RecipeIngredient
+public class RecipeIngredient
 {
     public int RecipeId { get; set; }
     public Recipe Recipe { get; set; } = null!;
