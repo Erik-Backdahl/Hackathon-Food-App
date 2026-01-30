@@ -17,6 +17,19 @@ export function RecipesPage() {
   });
 
   const [isOpen, setIsOpen] = useState(true);
+  const [openGroups, setOpenGroups] = useState<Set<string>>(new Set());
+
+  const toggleGroup = (groupName: string) => {
+    setOpenGroups((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(groupName)) {
+        newSet.delete(groupName);
+      } else {
+        newSet.add(groupName);
+      }
+      return newSet;
+    });
+  };
 
   useEffect(() => {
     fetch("/api/recipes")
@@ -61,6 +74,33 @@ export function RecipesPage() {
     }));
   };
 
+  const FilterGroup = ({
+    title,
+    groupId,
+    children,
+  }: {
+    title: string;
+    groupId: string;
+    children: React.ReactNode;
+  }) => {
+    const isGroupOpen = openGroups.has(groupId);
+    return (
+      <div className="filter-group-wrapper">
+        <button
+          className="filter-group-toggle"
+          onClick={() => toggleGroup(groupId)}
+          aria-expanded={isGroupOpen}
+        >
+          <h4>{title}</h4>
+          <span className={`group-arrow ${isGroupOpen ? "open" : ""}`}>▾</span>
+        </button>
+        <div className={`filter-group-content ${isGroupOpen ? "open" : ""}`}>
+          {children}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="recipes-page">
       <div className="recipes-header">
@@ -81,8 +121,7 @@ export function RecipesPage() {
         </button>
 
         <div className={`filter-panel ${isOpen ? "open" : ""}`}>
-          <div className="filter-group">
-            <h4>Dietary</h4>
+          <FilterGroup title="Dietary" groupId="dietary">
             <label>
               <input
                 type="checkbox"
@@ -123,10 +162,9 @@ export function RecipesPage() {
               />
               Dairy Free
             </label>
-          </div>
+          </FilterGroup>
 
-          <div className="filter-group">
-            <h4>Prep Time</h4>
+          <FilterGroup title="Prep Time" groupId="prepTime">
             <label>
               <input
                 type="checkbox"
@@ -151,10 +189,9 @@ export function RecipesPage() {
               />
               60 min
             </label>
-          </div>
+          </FilterGroup>
 
-          <div className="filter-group">
-            <h4>Recipe Type</h4>
+          <FilterGroup title="Recipe Type" groupId="recipeType">
             <label>
               <input
                 type="checkbox"
@@ -187,7 +224,7 @@ export function RecipesPage() {
               />
               Popular
             </label>
-          </div>
+          </FilterGroup>
         </div>
       </div>
 
