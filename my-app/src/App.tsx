@@ -4,7 +4,7 @@ import "./App.css";
 import { InventoryPage } from "./views/InventoryPage";
 import { RecipesPage } from "./views/RecipesPage";
 
-function App() {
+export default function App() {
   return (
     <div>
       <header className="app-header">
