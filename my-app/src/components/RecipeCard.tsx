@@ -8,11 +8,10 @@ type RecipeCardProps = {
     need: string[];
     tag: string;
     tagColor?: string;
+    time: number
 }
 
-
-
-const RecipeCard = ({title, image, have, need, tag, tagColor}: RecipeCardProps) => {
+const RecipeCard = ({title, image, have, need, tag, tagColor, time}: RecipeCardProps) => {
 
   return (
 
@@ -29,7 +28,11 @@ const RecipeCard = ({title, image, have, need, tag, tagColor}: RecipeCardProps) 
                 <p><span className="need">You Need:</span> {need.join(", ")}</p>
             </div>
             
-            <span className="tag" style={{background: tagColor}}>{tag}</span>
+            <div className="cooking-time">
+                <span className="tag" style={{background: tagColor}}>{tag}</span>
+                <span>Cooking Time:{time}</span>
+            </div>
+            
         </div>
 
         <button className="show-button">Show Instructions</button>
